@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bored Ape Punks - Ape Blockchain NFT Collection</title>
+    <style>
+        @font-face {
+            font-family: 'PixelFont';
+            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        }
+        
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #0a0a2a; /* Dark blue blockchain background */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            image-rendering: pixelated;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 8px solid #1a75ff; /* Bright blockchain blue */
+            background-color: #0d47a1; /* Deep blue */
+            box-shadow: 0 0 0 8px #000, 0 0 0 16px #1a75ff;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            max-width: 300px;
+            image-rendering: pixelated;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: #fff;
+            text-shadow: 3px 3px 0 #1a75ff;
+        }
+        
+        .mint-button {
+            display: inline-block;
+            background-color: #1a75ff;
+            color: white;
+            padding: 15px 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            text-decoration: none;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 #000;
+            transition: all 0.2s;
+        }
+        
+        .mint-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            background-color: rgba(26, 117, 255, 0.2);
+            padding: 20px;
+            border: 4px solid #000;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            transition: transform 0.2s;
+            image-rendering: pixelated;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .pixel-divider {
+            height: 8px;
+            background-color: #1a75ff;
+            margin: 20px 0;
+            image-rendering: pixelated;
+        }
+        
+        /* NFT Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        
+        .nft-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 4px solid #000;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .nft-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(26, 117, 255, 0.5);
+        }
+        
+        .nft-image {
+            width: 100%;
+            height: auto;
+            image-rendering: pixelated;
+            border: 2px solid #1a75ff;
+        }
+        
+        .nft-id {
+            margin-top: 8px;
+            font-size: 10px;
+            color: #1a75ff;
+        }
+        
+        .powered-by {
+            font-size: 12px;
+            color: #1a75ff;
+            margin-top: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* New visual effects for roadmap */
+        .roadmap-phase {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: rgba(26, 117, 255, 0.1);
+            border-left: 4px solid #1a75ff;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-phase:hover {
+            background-color: rgba(26, 117, 255, 0.2);
+            transform: translateX(5px);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+
+        .roadmap-phase h3 {
+            color: #1a75ff;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .roadmap-phase h3:before {
+            content: "→";
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        .roadmap-phase p {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .roadmap-phase p:before {
+            content: "•";
+            position: absolute;
+            left: -15px;
+            color: #1a75ff;
+        }
+
+        /* New visual effects for FAQ */
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 2px dotted #1a75ff;
+            padding-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-bottom: 2px solid #1a75ff;
+            padding-left: 5px;
+        }
+
+        .faq-item h3 {
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-item h3:after {
+            content: "+";
+            margin-left: 10px;
+            color: #1a75ff;
+            font-size: 20px;
+        }
+
+        .faq-item:hover h3:after {
+            content: "−";
+        }
+
+        .faq-item p {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid rgba(26, 117, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Replace with your actual logo path -->
+            <img src="nfts/logo.png" alt="Bored Ape Punks Logo" class="logo">
+            <h1>BORED APE PUNKS</h1>
+            <p>5,555 Unique NFTs on Ape Blockchain</p>
+            
+            <a href="" class="mint-button">MINT NOW</a>
+            <div class="powered-by">Powered by ApeCoin</div>
+        </header>
+        
+        <div class="pixel-divider"></div>
+        
+        <section id="description">
+            <h2>DESCRIPTION</h2>
+            <p>Bored Ape Punks is a collection of 5,555 unique NFTs on the Ape Blockchain, blending creative digital art with a community-driven project. Each Bored Ape Punk offers exclusive access to a growing ecosystem and special benefits for holders. With a focus on innovation and collaborations, this collection aims to create an engaging experience for collectors and enthusiasts alike. Join us for the minting event and be part of the future of digital collectibles.</p>
+        </section>
+        
+        <div class="pixel-divider"></div>
+        
+        <!-- NFT Gallery Section -->
+        <section id="gallery">
+            <h2>NFT GALLERY</h2>
+            <div class="gallery">
+                <!-- Replace these image paths with your actual NFT images -->
+                <div class="nft-item">
+                    <img src="nfts/ape1.png" alt="Bored Ape Punk #1" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape2.png" alt="Bored Ape Punk #2" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape3.png" alt="Bored Ape Punk #3" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape4.png" alt="Bored Ape Punk #4" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape5.png" alt="Bored Ape Punk #5" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape6.png" alt="Bored Ape Punk #6" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape7.png" alt="Bored Ape Punk #7" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape8.png" alt="Bored Ape Punk #8" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape9.png" alt="Bored Ape Punk #9" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+                <div class="nft-item">
+                    <img src="nfts/ape10.png" alt="Bored Ape Punk #10" class="nft-image">
+                    <div class="nft-id"></div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="pixel-divider"></div>
+        
+        <section id="roadmap">
+            <h2>ROADMAP</h2>
+            
+            <div class="roadmap-phase">
+                <h3>Phase 1: Ape Awakening</h3>
+                <p>Smart Contract Deployment: Deploy the Bored Ape Punks contract on Ape Blockchain, setting the foundation for a high-speed, low-cost NFT experience.</p>
+                <p>Community Onboarding: Build a dedicated community on Twitter, creating an environment where collectors and enthusiasts can interact, share, and engage.</p>
+                <p>Marketplace Integration: Ensure seamless access to Ape Blockchain's top NFT marketplaces for easy buying, selling, and trading of Bored Ape Punks.</p>
+            </div>
+            
+            <div class="roadmap-phase">
+                <h3>Phase 2: Minting & Market Surge</h3>
+                <p>Minting Launch: Open the doors for collectors to mint their 5,555 unique Bored Ape Punks NFTs.</p>
+                <p>Strategic Marketing: Drive interest with targeted marketing campaigns designed to grow the project's reach and build hype within the NFT space.</p>
+                <p>Community Engagement: Create interactive events and rewards to foster loyalty and encourage participation from the growing community.</p>
+            </div>
+            
+            <div class="roadmap-phase">
+                <h3>Phase 3: Expanding the Ape Legacy</h3>
+                <p>Collaborations & Partnerships: Engage with other Ape Blockchain-based NFT projects and Web3 leaders to unlock new opportunities for Bored Ape Punks holders.</p>
+                <p>Utility & Experiences: Introduce innovative utility features such as exclusive content, member-only perks, and potential metaverse tie-ins to enhance the value of owning a Bored Ape Punk.</p>
+                <p>Sustaining Growth: Maintain momentum with ongoing community engagement, ensuring that Bored Ape Punks evolves and stays relevant in the fast-paced NFT landscape.</p>
+            </div>
+            
+            <p>Bored Ape Punks isn't just an NFT collection; it's a movement built on creativity, community, and continuous growth within the Ape Blockchain ecosystem.</p>
+        </section>
+        
+        <div class="pixel-divider"></div>
+        
+        <section id="faq">
+            <h2>FAQ</h2>
+            
+            <div class="faq-item">
+                <h3>1. What is Bored Ape Punks?</h3>
+                <p>Bored Ape Punks is an exclusive NFT collection on Ape Blockchain, consisting of 5,555 unique, limited-edition apes. These NFTs offer collectors an opportunity to join a community-driven project focused on innovation, art, and growth within the Ape Blockchain ecosystem.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>2. How can I mint a Bored Ape Punks NFT?</h3>
+                <p>Minting will take place where you can use an Ape Blockchain-compatible wallet to secure your very own Bored Ape Punk. Keep an eye on our Twitter for the official minting date and details.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>3. What is the roadmap for Bored Ape Punks?</h3>
+                <p>Phase 1: Deployment of the smart contract on Ape Blockchain, creation of the community on Twitter, and integration with Ape Blockchain NFT marketplaces.</p>
+                <p>Phase 2: Launch the minting event for 5,555 NFTs and drive growth through targeted marketing campaigns and community engagement.</p>
+                <p>Phase 3: Focus on strategic collaborations with Ape Blockchain projects, introducing unique utilities for holders, and expanding the Bored Ape Punks ecosystem with exclusive benefits.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>4. Where can I buy Bored Ape Punks NFTs after minting?</h3>
+                <p>After the minting event, Bored Ape Punks will be available for buying, selling, and trading on top Ape Blockchain NFT marketplaces.</p>
+            </div>
+            
+            <p>Join us on this journey as we create a community-driven, innovative NFT experience within the Ape Blockchain ecosystem!</p>
+        </section>
+        
+        <div class="pixel-divider"></div>
+        
+        <footer>
+            <p>© 2023 Bored Ape Punks. All rights reserved.</p>
+            <a href="https://twitter.com/yourtwitterhandle" target="_blank">
+                <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="Twitter" class="social-icon">
+            </a>
+            <div class="powered-by">Powered by ApeCoin</div>
+        </footer>
+    </div>
+</body>
+</html>
